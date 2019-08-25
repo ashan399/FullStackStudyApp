@@ -1,0 +1,5 @@
+{
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.pythonPath": "c:\\Users\\Ashan\\Documents\\PythonFlask\\venv\\Scripts\\python.exe"
+}

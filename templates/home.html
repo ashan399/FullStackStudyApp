@@ -4,14 +4,45 @@
 <article class="media content-section" style="border-radius: 10px;">
     <div class="media-body">
         <div class="article-metadata">
-            <a class="mr-2" href="/user">{{ post.name }}</a>
+            <a class="mr-2" href="\{{post.id}}" + post.name>{{ post.name }}</a>
             <small class="text-muted">{{ post.date_created.date() }}</small>
         </div>
-        <h3><a class="article-title" href="#">{{ post.title }}</a></h3>
+        <h3><a class="article-title" href="\posts\{{post.id}}">{{ post.title }}</a></h3>
         <p class="article-content">{{ post.description }}</p>
     </div>
 </article>
 {{post.content}}
 {% endfor %}
-
 {% endblock content %}
+{% block sidebox %}
+<div class="wrapper">
+    <h3>Create a Post</h3>
+    <p class='text-muted'>
+        <form action="/" method="POST">
+            <div class="contact-form">
+                <div class="input-fields">
+                    <input type="text" name="name" id="name" placeholder="Name" class="input" required=true>
+                    <input type="text" name="title" id="title" placeholder="Title" class="input" required=true>
+                    <input type="text" name="email" id="email" placeholder="Email (optional)" class="input">
+                    <input type="text" name="phone" id="phone" placeholder="Phone (optional)" class="input"
+                        style="margin-bottom: 10%">
+                    <textarea name="description" id="description" placeholder="Message" rows="7" class="msg"></textarea>
+
+                    <div class="post">
+                        <input type="submit" value="Post" class="button">
+                        <div class="loader">
+                            <div class="check">
+                                <span class="check-one"></span>
+                                <span class="check-two"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </form>
+        </ul>
+    </p>
+</div>
+{% endblock sidebox %}

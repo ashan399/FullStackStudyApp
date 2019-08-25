@@ -49,39 +49,7 @@
             <div class="col-md-8">
                 {% block content %}{% endblock %}
             </div>
-            <div class="wrapper">
-                <h3>Create a Post</h3>
-                <p class='text-muted'>
-                    <form action="/" method="POST">
-                        <div class="contact-form">
-                            <div class="input-fields">
-                                <input type="text" name="name" id="name" placeholder="Name" class="input" required=true>
-                                <input type="text" name="title" id="title" placeholder="Title" class="input"
-                                    required=true>
-                                <input type="text" name="email" id="email" placeholder="Email (optional)" class="input">
-                                <input type="text" name="phone" id="phone" placeholder="Phone (optional)" class="input"
-                                    style="margin-bottom: 10%">
-                                <textarea name="description" id="description" placeholder="Message" rows="7"
-                                    class="msg"></textarea>
-
-                                <div class="post">
-                                    <input type="submit" value="Post" class="button">
-                                    <div class="loader">
-                                        <div class="check">
-                                            <span class="check-one"></span>
-                                            <span class="check-two"></span>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </form>
-                    </ul>
-                </p>
-
-            </div>
+            {% block sidebox %}{% endblock %}
         </div>
     </main>
 

@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<article class="media content-section" style="border-radius: 10px;">
+    <div class="media-body">
+        <div class="article-metadata">
+            {{ post.name }}
+            <small class="text-muted" style="padding-left: 1%">{{ post.date_created.date() }}</small>
+        </div>
+        <h3 class="article-title">{{ post.title }}</h3>
+        <p class="article-content">{{ post.description }}</p>
+    </div>
+</article>
+
+{% endblock content %}

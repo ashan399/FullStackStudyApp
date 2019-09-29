@@ -9,6 +9,12 @@
         </div>
         <h3><a class="article-title" href="\posts\{{post.id}}">{{ post.title }}</a></h3>
         <p class="article-content">{{ post.description }}</p>
+        <div align=right>
+            {{ post.going }} others are going
+            <a class="mr-2" href="\going\{{post.id}}"><button class="going"> Go </button></a>
+            <a class="mr-2" href="\cancelgoing\{{post.id}}"><button class="not"> Undo </button></a>
+        </div>
+
     </div>
 </article>
 {{post.content}}
@@ -37,8 +43,6 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </form>

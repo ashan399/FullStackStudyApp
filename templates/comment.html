@@ -11,5 +11,24 @@
         <p class="article-content">{{ post.description }}</p>
     </div>
 </article>
+<article class="media content-section" style="border-radius: 10px;">
+    <div class="media-body">
+        <h3 class="article-title">Comments</h3>
+        <p class="article-content">{{ post.comments }}</p>
+    </div>
+</article>
+<article class="media content-section" style="border-radius: 10px;">
 
+    <h2 class="mr-2">Comment</h2><br />
+    <form action="\posts\{{post.id}}" method="POST">
+
+        <input type="text" name="name" id="name" placeholder="Name" class="input" required=true>
+        <textarea name="description" id="description" placeholder="Message" rows="5" class="msg"></textarea>
+
+        <input type="submit" value="Post" class="button">
+
+    </form>
+
+</article>
+</div>
 {% endblock content %}

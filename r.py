@@ -1,10 +1,11 @@
 from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import update
 from datetime import datetime
 
-app1 = Flask(__name__)
-app1.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test2.db'
-db = SQLAlchemy(app1)
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+db = SQLAlchemy(app)
 
 # il
 
@@ -18,20 +19,24 @@ class Post(db.Model):
     description = db.Column(db.String(250), unique=False)
     phone = db.Column(db.String(12), unique=False, default="")
     email = db.Column(db.String(100), unique=False, default="")
+    going = db.Column(db.Integer, unique=False, default=0)
+    comments = db.Column(db.String(1000), unique=False, default="")
 
-    def __init__(self, name, title, date_created,  description, phone, email):
+    def __init__(self, name, title, date_created,  description, phone, email, going, comments):
         self.name = name
         self.title = title
         self.date_created = date_created
         self.description = description
         self.phone = phone
         self.email = email
+        self.going = going
+        self.comments = comments
 
     def __repr__(self):
         return '<User %r>' % self.name
 
 
-@app1.route('/', methods=['POST', 'GET'])
+@app.route('/', methods=['POST', 'GET'])
 def home():
     if request.method == 'POST':
         name = request.form['name']
@@ -41,7 +46,7 @@ def home():
         email = request.form['email']
 
         p1 = Post(name, title, datetime.now().date(),
-                  description, phone, email)
+                  description, phone, email, 0, "")
 
         try:
             db.session.add(p1)
@@ -54,22 +59,49 @@ def home():
         return render_template('home.html', posts=post_list)
 
 
-@app1.route('/about')
+@app.route('/about')
 def about():
     return render_template('about.html', title='about')
 
 
-@app1.route('/<user_id>')
+@app.route('/<user_id>')
 def user(user_id):
     person = Post.query.filter_by(id=user_id).first()
     return render_template('user.html', user=person)
 
 
-@app1.route('/posts/<post_id>')
+@app.route('/posts/<post_id>', methods=['POST', 'GET'])
 def post_comments(post_id):
+
+    if request.method == 'POST':
+        name = request.form['name']
+        description = request.form['description']
+        date = str(datetime.now())[0:-10]
+        post = Post.query.filter_by(id=post_id).first()
+        post.comments += '⠀⠀⠀' + description + ' - ' + \
+            name + ', ' + date + '\n\n'
+        db.session.commit()
+        return render_template('comment.html', post=post)
+    else:
+        post = Post.query.filter_by(id=post_id).first()
+        return render_template('comment.html', post=post)
+
+
+@app.route('/going/<post_id>')
+def going(post_id):
     post = Post.query.filter_by(id=post_id).first()
-    return render_template('comment.html', post=post)
+    post.going += 1
+    db.session.commit()
+    return redirect('/')
+
+
+@app.route('/cancelgoing/<post_id>')
+def cancel_going(post_id):
+    post = Post.query.filter_by(id=post_id).first()
+    post.going -= 1
+    db.session.commit()
+    return redirect('/')
 
 
 if __name__ == '__main__':
-    app1.run(debug=True)
+    app.run(debug=True)

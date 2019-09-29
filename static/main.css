@@ -115,9 +115,9 @@ a.article-title:hover {
 
 }
 
-* {
+/* * {
   box-sizing: border-box;
-}
+} */
 
 .post {
   background-color: #ffffff;
@@ -142,7 +142,26 @@ a.article-title:hover {
   font-size: 18px;
   font-weight: 300;
   cursor: pointer;
-  transition: all .1s ease-in-out;
+  transition: all .1s ease-in-out;  
+}
 
-  
+.going {
+  font-size: 12px;
+  width: 50px;
+  border-radius: 18px;
+  background-color: #00da12;
+  border: solid 1px transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: all .1s ease-in-out;  
+}
+.not {
+  font-size: 12px;
+  width: 55px;
+  border-radius: 18px;
+  background-color: #ffae35;
+  border: solid 1px transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: all .1s ease-in-out;  
 }

@@ -3,7 +3,6 @@ Want to study with others but can't find people to come? Is your reddit post abo
 
 This application was created using Python Flask, SQLAlchemy, JavaScript, HTML, and CSS.
 
-•	Backend was handled using Flask and Python. GET requests queried a database to find and display specific posts while POST requests updated the database with new objects or modified an existing entry. Used SQLAlchemy for database functionality.
-
-
+•	Backend was handled using Flask and Python. 
+•	GET requests queried a database to find and display specific posts while POST requests updated the database with new objects or modified an existing entry. Used SQLAlchemy for database functionality.
 •	Wrote front-end in HTML, CSS, and JavaScript. Used template inheritance to minimize code and allow block overriding.
